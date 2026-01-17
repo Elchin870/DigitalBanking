@@ -13,4 +13,5 @@ public class DigitalBankingDbContext:IdentityDbContext<AppUser>
     public DbSet<Account> Accounts { get; set; }
     public DbSet<VirtualCard> VirtualCards { get; set; }
     public DbSet<ChatMessage> ChatMessages { get; set; }
+    public DbSet<ErrorLog> ErrorLogs { get; set; }
 }

@@ -1,4 +1,5 @@
 
+using DigitalBanking.API.Middlewares;
 using DigitalBanking.Core.Entities;
 using DigitalBanking.Core.Hubs;
 using DigitalBanking.Core.Interfaces.Repository;
@@ -52,6 +53,7 @@ namespace DigitalBanking.API
             builder.Services.AddScoped<IChatService, ChatService>();
             builder.Services.AddScoped<IChatRepository, ChatRepository>();
             builder.Services.AddScoped<IAdminService, AdminService>();
+            builder.Services.AddScoped<IErrorLogService, ErrorLogService>();
 
             var conn = builder.Configuration.GetConnectionString("DefaultConnection");
 
@@ -158,6 +160,8 @@ namespace DigitalBanking.API
             }
 
             app.UseStaticFiles();
+
+            app.UseMiddleware<GlobalErrorHandlerMiddleware>();
 
             app.MapHub<ChatHub>("/hubs/chat");
             app.MapHub<NotificationHub>("/hubs/notifications");

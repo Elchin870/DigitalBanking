@@ -71,5 +71,12 @@ namespace DigitalBanking.API.Controllers
             return Ok(result.Message);
         }
 
+        [HttpGet("test-error")]
+        public IActionResult TestError()
+        {
+            throw new Exception("Test üçün exception");
+        }
+
+
     }
 }
